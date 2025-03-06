@@ -394,4 +394,4 @@ script = ExtResource("1_kbwp0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oidm")
-animation = &"idle_back"
+animation = &"walk_side"
