@@ -2,3 +2,6 @@ res://README.md
 res://Scenes/player.tscn
 res://Scripts/player.gd
 res://Scenes/world.tscn
+res://Scenes/slime.tscn
+res://Scenes/slime.gd
+res://Scripts/slime.gd

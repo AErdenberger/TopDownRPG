@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1741291889
+::res://::1741295353
 icon.svg::CompressedTexture2D::8451544326529618772::1741289690::1741289701::1::::<><>::
-README.md::TextFile::-1::1741291098::0::1::::<><>::
+README.md::TextFile::-1::1741295353::0::1::::<><>::
 ::res://Assets/::1741291272
 ::res://Assets/characters/::1741291272
 player.png::CompressedTexture2D::2103559799462490389::1741291272::1741291272::1::::<><>::
@@ -46,8 +46,10 @@ wooden.png::CompressedTexture2D::8934072979593419414::1741291271::1741291272::1:
 walls.png::CompressedTexture2D::6568192071086989054::1741291271::1741291272::1::::<><>::
 wooden_door.png::CompressedTexture2D::1067331134955449472::1741291271::1741291272::1::::<><>::
 wooden_door_b.png::CompressedTexture2D::8891060944449515501::1741291271::1741291272::1::::<><>::
-::res://Scenes/::1741292294
-player.tscn::PackedScene::8720638485597396352::1741292349::0::1::::<><>::uid://478k75a3n1s8::::res://Assets/characters/player.png<>res://Scenes/player.gd
-player.gd::GDScript::-1::1741292332::0::1::::<>CharacterBody2D<>::
-world.tscn::PackedScene::6444996968169840129::1741291607::0::1::::<><>::
-::res://Scripts/::1741291580
+::res://Scenes/::1741303683
+player.tscn::PackedScene::8720638485597396352::1741303333::0::1::::<><>::uid://478k75a3n1s8::::res://Assets/characters/player.png<>res://Scripts/player.gd
+slime.gd::GDScript::-1::1741303754::0::1::::<>CharacterBody2D<>::
+slime.tscn::PackedScene::4612099287162084215::1741303761::0::1::::<><>::uid://d1dx2knritcdy::::res://Assets/characters/slime.png<>res://Scenes/slime.gd
+world.tscn::PackedScene::6444996968169840129::1741302355::0::1::::<><>::uid://s7wpb2iqyg8j::::res://Assets/tilesets/plains.png<>uid://3pdfroch18w5::::res://Assets/tilesets/grass.png<>uid://4m6hlpa8it33::::res://Assets/tilesets/decor_16x16.png<>uid://bkpbpddlheyja::::res://Assets/tilesets/decor_8x8.png<>uid://7syt2ooday85::::res://Assets/tilesets/fences.png<>uid://cfa1gcqiwu2rb::::res://Assets/objects/objects.png<>uid://c0txftlpbieli::::res://Assets/tilesets/walls/walls.png<>uid://pha1102ijctk::::res://Assets/tilesets/walls/wooden_door.png<>uid://dwilv24unpob5::::res://Scenes/player.tscn
+::res://Scripts/::1741295353
+player.gd::GDScript::-1::1741295353::0::1::::<>CharacterBody2D<>::
