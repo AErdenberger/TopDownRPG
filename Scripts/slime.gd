@@ -4,6 +4,7 @@ var speed = 40
 var player_chase = false
 var player = null
 var current_dir = "none"
+# var direction = (player.position - position).normalized()
 
 func _ready():
 	$AnimatedSprite2D.play("idle_front")
@@ -17,8 +18,12 @@ func _on_detection_area_body_exited(body):
 	player_chase = false
 
 func _physics_process(delta):
+	
 	if player_chase:
-		position += (player.position - position)/speed
+		var direction = (player.position - position).normalized()
+		velocity = direction * speed
+		
+		move_and_slide()
 	
 		$AnimatedSprite2D.play("moving_front")
 	else:
