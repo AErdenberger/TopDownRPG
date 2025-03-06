@@ -1,6 +1,7 @@
-[gd_scene load_steps=51 format=3 uid="uid://dwilv24unpob5"]
+[gd_scene load_steps=52 format=3 uid="uid://dwilv24unpob5"]
 
 [ext_resource type="Texture2D" uid="uid://478k75a3n1s8" path="res://Assets/characters/player.png" id="1_clt7p"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_kbwp0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yffpc"]
 atlas = ExtResource("1_clt7p")
@@ -387,6 +388,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kbwp0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
