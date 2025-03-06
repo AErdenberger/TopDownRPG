@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://478k75a3n1s8" path="res://Assets/characters/player.png" id="1_clt7p"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_kbwp0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyjka"]
-size = Vector2(20, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_xtnsp"]
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yffpc"]
 atlas = ExtResource("1_clt7p")
@@ -395,7 +395,7 @@ script = ExtResource("1_kbwp0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_xyjka")
+shape = SubResource("CircleShape2D_xtnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oidm")
