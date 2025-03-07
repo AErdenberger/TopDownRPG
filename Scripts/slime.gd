@@ -23,9 +23,21 @@ func _physics_process(delta):
 		var direction = (player.position - position).normalized()
 		velocity = direction * speed
 		
+		if abs(direction.x) > abs(direction.y): 
+			# More horizontal movement
+			if direction.x < 0:
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("moving_side")
+		else:
+			# More vertical movement
+			if direction.y < 0:
+				$AnimatedSprite2D.play("moving_back")
+			else:
+				$AnimatedSprite2D.play("moving_front")
+		
 		move_and_slide()
-	
-		$AnimatedSprite2D.play("moving_front")
 	else:
 		$AnimatedSprite2D.play("idle_front")
 	
