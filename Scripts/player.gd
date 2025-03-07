@@ -8,6 +8,8 @@ var alive = true
 const speed = 100
 var current_dir = "none"
 
+var attack_ip = false
+
 func _ready():
 	$AnimatedSprite2D.play("idle_front")
 
@@ -43,6 +45,7 @@ func player_animation(movement):
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
+	attack()
 	
 	if health <= 0:
 		alive = false
@@ -51,6 +54,9 @@ func _physics_process(delta):
 		print("game over")
 	
 func player_movement(delta):
+	
+	if attack_ip:
+		return
 	
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
@@ -93,11 +99,35 @@ func enemy_attack():
 	if enemy_nearby and enemy_attack_cd:
 		health = health - 20
 		enemy_attack_cd = false
-		$attack_cd.start()
+		$damage_cd.start()
 		print(health)
 		
 func player():
 	pass
 
+func attack():
+	var direction = current_dir
+	
+	if Input.is_action_just_pressed("Attack") and not attack_ip:
+		Global.player_current_attack = true
+		attack_ip = true
+		if direction == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("attack_side")
+		elif direction == "left":
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("attack_side")
+		elif direction == "up":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("attack_back")
+		elif direction == "down":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("attack_front")
+			
+		$attack_cd.start()
+		await $AnimatedSprite2D.animation_finished
+			
 func _on_attack_cd_timeout():
-	enemy_attack_cd = true
+	$attack_cd.stop()
+	Global.player_current_attack = false
+	attack_ip = false

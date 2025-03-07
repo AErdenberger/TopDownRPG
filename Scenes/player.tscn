@@ -227,7 +227,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack_back",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -244,7 +244,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack_front",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -261,7 +261,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack_side",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -430,7 +430,8 @@ shape = SubResource("CircleShape2D_xtnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oidm")
-animation = &"death"
+animation = &"attack_side"
+frame_progress = 0.95616
 
 [node name="PlayerHitBox" type="Area2D" parent="."]
 
@@ -439,9 +440,12 @@ position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_0a5pd")
 debug_color = Color(0.662745, 0.513726, 0, 0.419608)
 
-[node name="attack_cd" type="Timer" parent="."]
+[node name="damage_cd" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="attack_cd" type="Timer" parent="."]
 
 [connection signal="body_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_body_entered"]
 [connection signal="body_exited" from="PlayerHitBox" to="." method="_on_player_hit_box_body_exited"]
+[connection signal="timeout" from="damage_cd" to="." method="_on_attack_cd_timeout"]
 [connection signal="timeout" from="attack_cd" to="." method="_on_attack_cd_timeout"]
