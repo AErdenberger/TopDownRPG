@@ -399,7 +399,10 @@ debug_color = Color(0.937255, 0, 0.635294, 0.419608)
 shape = SubResource("CircleShape2D_jm2kx")
 debug_color = Color(0.643137, 0.521569, 0, 0.419608)
 
+[node name="damage_cd" type="Timer" parent="."]
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="SlimeHitBox" to="." method="_on_slime_hit_box_body_entered"]
 [connection signal="body_exited" from="SlimeHitBox" to="." method="_on_slime_hit_box_body_exited"]
+[connection signal="timeout" from="damage_cd" to="." method="_on_damage_cd_timeout"]

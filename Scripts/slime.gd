@@ -8,6 +8,7 @@ var current_dir = "none"
 
 var health = 100
 var player_in_attackzone = false
+var can_take_damage = true
 
 func _ready():
 	$AnimatedSprite2D.play("idle_front")
@@ -59,8 +60,16 @@ func _on_slime_hit_box_body_exited(body):
 
 func deal_with_damage():
 	if player_in_attackzone and Global.player_current_attack == true:
-		health = health - 20
-		print("slime health = ", health)
-		if health <= 0:
-			$AnimatedSprite2D.play("death")
-			self.queue_free()
+		if can_take_damage:
+			health = health - 20
+			$damage_cd.start()
+			can_take_damage = false
+			print("slime health = ", health)
+			if health <= 0:
+				$AnimatedSprite2D.play("death")
+				self.queue_free()
+		
+
+
+func _on_damage_cd_timeout():
+	can_take_damage = true
