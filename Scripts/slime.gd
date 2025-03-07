@@ -21,6 +21,7 @@ func _on_detection_area_body_exited(body):
 	player_chase = false
 
 func _physics_process(delta):
+	deal_with_damage()
 	
 	if player_chase:
 		var direction = (player.position - position).normalized()
@@ -49,7 +50,17 @@ func enemy():
 	
 
 func _on_slime_hit_box_body_entered(body):
-	pass # Replace with function body.
+	if body.has_method("player"):
+		player_in_attackzone = true
 
 func _on_slime_hit_box_body_exited(body):
-	pass # Replace with function body.
+	if body.has_method("player"):
+		player_in_attackzone = false
+
+func deal_with_damage():
+	if player_in_attackzone and Global.player_current_attack == true:
+		health = health - 20
+		print("slime health = ", health)
+		if health <= 0:
+			$AnimatedSprite2D.play("death")
+			self.queue_free()
