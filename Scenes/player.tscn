@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dwilv24unpob5"]
+[gd_scene load_steps=57 format=3 uid="uid://dwilv24unpob5"]
 
 [ext_resource type="Texture2D" uid="uid://478k75a3n1s8" path="res://Assets/characters/player.png" id="1_clt7p"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_kbwp0"]
@@ -53,6 +53,18 @@ region = Rect2(96, 336, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdueb"]
 atlas = ExtResource("1_clt7p")
 region = Rect2(144, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4y8f"]
+atlas = ExtResource("1_clt7p")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1lbd"]
+atlas = ExtResource("1_clt7p")
+region = Rect2(48, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n61dx"]
+atlas = ExtResource("1_clt7p")
+region = Rect2(96, 432, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4onqh"]
 atlas = ExtResource("1_clt7p")
@@ -253,6 +265,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_x4y8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1lbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n61dx")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4onqh")
 }, {
 "duration": 1.0,
@@ -390,9 +416,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0a5pd"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 3
+up_direction = Vector2(0, 1)
 script = ExtResource("1_kbwp0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -401,4 +430,18 @@ shape = SubResource("CircleShape2D_xtnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3oidm")
-animation = &"walk_side"
+animation = &"death"
+
+[node name="PlayerHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_0a5pd")
+debug_color = Color(0.662745, 0.513726, 0, 0.419608)
+
+[node name="attack_cd" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_body_entered"]
+[connection signal="body_exited" from="PlayerHitBox" to="." method="_on_player_hit_box_body_exited"]
+[connection signal="timeout" from="attack_cd" to="." method="_on_attack_cd_timeout"]

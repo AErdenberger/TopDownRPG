@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+var enemy_nearby = false
+var enemy_attack_cd = true
+var health = 100
+var alive = true
+
 const speed = 100
 var current_dir = "none"
 
@@ -37,6 +42,13 @@ func player_animation(movement):
 
 func _physics_process(delta):
 	player_movement(delta)
+	enemy_attack()
+	
+	if health <= 0:
+		alive = false
+		health = 0
+		$AnimatedSprite2D.play("death")
+		print("game over")
 	
 func player_movement(delta):
 	
@@ -66,3 +78,26 @@ func player_movement(delta):
 		velocity.y = 0
 	
 	move_and_slide()
+
+
+func _on_player_hit_box_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_nearby = true
+
+
+func _on_player_hit_box_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_nearby = false
+
+func enemy_attack():
+	if enemy_nearby and enemy_attack_cd:
+		health = health - 20
+		enemy_attack_cd = false
+		$attack_cd.start()
+		print(health)
+		
+func player():
+	pass
+
+func _on_attack_cd_timeout():
+	enemy_attack_cd = true

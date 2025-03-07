@@ -5,3 +5,4 @@ res://Scenes/world.tscn
 res://Scenes/slime.tscn
 res://Scenes/slime.gd
 res://Scripts/slime.gd
+res://Scripts/global.gd

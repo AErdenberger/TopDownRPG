@@ -6,6 +6,9 @@ var player = null
 var current_dir = "none"
 # var direction = (player.position - position).normalized()
 
+var health = 100
+var player_in_attackzone = false
+
 func _ready():
 	$AnimatedSprite2D.play("idle_front")
 
@@ -40,4 +43,13 @@ func _physics_process(delta):
 		move_and_slide()
 	else:
 		$AnimatedSprite2D.play("idle_front")
+
+func enemy():
+	pass
 	
+
+func _on_slime_hit_box_body_entered(body):
+	pass # Replace with function body.
+
+func _on_slime_hit_box_body_exited(body):
+	pass # Replace with function body.
